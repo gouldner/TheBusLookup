@@ -69,4 +69,3 @@ var processXml = function(data) {
 
 
 main();
-
