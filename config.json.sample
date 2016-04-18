@@ -1,0 +1,4 @@
+{
+    "key" : "{key for DaBus Api}",
+    "stops": ["214", "255"]
+}

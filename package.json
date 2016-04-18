@@ -1,0 +1,25 @@
+{
+  "name": "thebus",
+  "version": "1.0.0",
+  "description": "The Bus Lookup Utility",
+  "main": "bus.js",
+  "dependencies": {
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "xml2js": "^0.4.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gouldner/TheBusLookup.git"
+  },
+  "author": "gouldner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gouldner/TheBusLookup/issues"
+  },
+  "homepage": "https://github.com/gouldner/TheBusLookup#readme"
+}

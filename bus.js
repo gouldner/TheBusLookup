@@ -2,8 +2,14 @@ var fs = require('fs');
 var xml = require('xml2js');
 var http= require('http');
 
-var key = '';
-var routes = {};
+var configFile = 'config.json';
+
+var configuration = JSON.parse(
+    fs.readFileSync(configFile)
+);
+
+var key = configuration.key;
+var stops = configuration.stops;
 
 var util = require('util');
 
@@ -11,7 +17,8 @@ var util = require('util');
 var main = function() {
   // 983 sinclair circle
   // 413 university and metcalf
-  var stops = ['983', '413'];
+  // 214 Kalanianaole Hwy + Laukahi St Westbound 
+  // 255 Kalanianaole Hwy + Waiholo St Eastbound
   for (var i = 0; i < stops.length; i++) {
     var id = stops[i];
     getSchedule(id);
