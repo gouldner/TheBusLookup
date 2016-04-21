@@ -64,8 +64,8 @@ var processXml = function(data) {
           routes[arrival.route] = arrival.stopTime;
       }
 
-      console.log(arrival.route + " - "
-                  + arrival.headsign + " at "
+      console.log("Route " + arrival.route + " heading to "
+                  + arrival.headsign + " arriving at "
                   + arrival.stopTime + "("
                   + arrival.estimated + ")"
                   );
