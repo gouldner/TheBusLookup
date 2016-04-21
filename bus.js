@@ -40,8 +40,7 @@ var getSchedule = function(stopId) {
 
       res.on('end', function() {
         routes = {};
-        var testReturnString = processXml(body);
-        console.log("testReturnString=" + testReturnString);
+        processXml(body);
         console.log("here: " + util.inspect(routes, false, null));
       });
 
@@ -77,8 +76,6 @@ var processXml = function(data) {
       console.log("Sorry no data returned for stop " + result.stopTimes.stop);
     }
   });
-  return "hello ";
-
 };
 
 
