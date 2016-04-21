@@ -29,6 +29,7 @@ var main = function() {
 var getSchedule = function(stopId) {
 
   var url = 'http://api.thebus.org/arrivals/?key=' + key + '&stop=' + stopId;
+  console.log("url=" + url);
 
   http.get(url, function(res) {
       res.setEncoding('utf8');
@@ -39,7 +40,8 @@ var getSchedule = function(stopId) {
 
       res.on('end', function() {
         routes = {};
-        processXml(body);
+        var testReturnString = processXml(body);
+        console.log("testReturnString=" + testReturnString);
         console.log("here: " + util.inspect(routes, false, null));
       });
 
@@ -55,22 +57,27 @@ var processXml = function(data) {
 
   parser.parseString(data, function (err, result) {
     console.log(result.stopTimes.stop + " - " + result.stopTimes.timestamp );
-    result.stopTimes.arrival.forEach(function(arrival,i) {
-      if (routes[arrival.route]) {
-        if (routes[arrival.route].length <= 4) {
-          routes[arrival.route].push(arrival.stopTime[0]);
-        }
-      } else {
-          routes[arrival.route] = arrival.stopTime;
-      }
+    if (typeof(result.stopTimes.arrival) !== 'undefined') {
+        result.stopTimes.arrival.forEach(function(arrival,i) {
+          if (routes[arrival.route]) {
+            if (routes[arrival.route].length <= 4) {
+              routes[arrival.route].push(arrival.stopTime[0]);
+            }
+          } else {
+              routes[arrival.route] = arrival.stopTime;
+          }
 
-      console.log("Route " + arrival.route + " heading to "
-                  + arrival.headsign + " arriving at "
-                  + arrival.stopTime + "("
-                  + arrival.estimated + ")"
-                  );
-    });
+          console.log("Route " + arrival.route + " heading to "
+                      + arrival.headsign + " arriving at "
+                      + arrival.stopTime + "("
+                      + arrival.estimated + ")"
+                      );
+        });
+    } else {
+      console.log("Sorry no data returned for stop " + result.stopTimes.stop);
+    }
   });
+  return "hello ";
 
 };
 
